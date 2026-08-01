@@ -3,6 +3,7 @@ import { Container, Grid, Box, Typography } from '@mui/material'
 import axios from '../../services/axios'
 import DashboardCards from '../../components/DashboardCards'
 import RecentActivities from '../../components/RecentActivities'
+import DashboardCharts from '../../components/charts/DashboardCharts'
 
 export default function DashboardPage(){
   const [activities, setActivities] = useState([])
@@ -51,18 +52,12 @@ export default function DashboardPage(){
         <Grid container spacing={2}>
           <Grid item xs={12} md={8}>
             <DashboardCards today={todayTotal} week={weekTotal} month={monthTotal} />
+
+            <DashboardCharts activities={activities} />
           </Grid>
 
           <Grid item xs={12} md={4}>
             <RecentActivities activities={recent} loading={loading} />
-          </Grid>
-
-          {/* Placeholder for charts - charts will be added in next milestone */}
-          <Grid item xs={12}>
-            <Box sx={{mt:3}}>
-              <Typography variant="h6">Charts</Typography>
-              <Typography color="text.secondary">Charts will appear here (implemented in the Charts milestone).</Typography>
-            </Box>
           </Grid>
         </Grid>
       </Box>
