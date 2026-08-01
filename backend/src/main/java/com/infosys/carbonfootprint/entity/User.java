@@ -58,6 +58,9 @@ public class User {
 
     private boolean enabled = true;
 
+    @Column(name = "must_reset_password")
+    private boolean mustResetPassword = false;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -214,6 +217,14 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public boolean isMustResetPassword() {
+        return mustResetPassword;
+    }
+
+    public void setMustResetPassword(boolean mustResetPassword) {
+        this.mustResetPassword = mustResetPassword;
     }
 
     public LocalDateTime getCreatedAt() {
