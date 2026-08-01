@@ -1,0 +1,13 @@
+# Ignore IDE and build files
+target/
+*.log
+*.class
+.idea/
+.vscode/
+*.iml
+
+# Node
+node_modules/
+
+# Mac
+.DS_Store
