@@ -1,0 +1,10 @@
+/* Global styles for the frontend */
+:root{
+  --primary:#1976d2;
+  --background:#f5f7fb;
+}
+body{
+  background:var(--background);
+}
+
+a{ color:inherit; text-decoration:none }
