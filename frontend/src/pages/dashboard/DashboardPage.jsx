@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Container, Grid, Box, Typography } from '@mui/material'
 import axios from '../../services/axios'
 import DashboardCards from '../../components/DashboardCards'
 import RecentActivities from '../../components/RecentActivities'
 import DashboardCharts from '../../components/charts/DashboardCharts'
+import LoadingSpinner from '../../components/LoadingSpinner'
 
 export default function DashboardPage(){
-  const [activities, setActivities] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [activities, setActivities] = React.useState([])
+  const [loading, setLoading] = React.useState(true)
 
-  useEffect(()=>{
+  React.useEffect(()=>{
     let mounted = true
     axios.get('/api/activities').then(res => {
       if (mounted) setActivities(res.data || [])
@@ -46,14 +47,14 @@ export default function DashboardPage(){
 
   return (
     <Container maxWidth="lg">
-      <Box sx={{py:4}}>
+      <Box sx={{py:4}} className="main-content">
         <Typography variant="h4" gutterBottom>Dashboard</Typography>
 
         <Grid container spacing={2}>
           <Grid item xs={12} md={8}>
             <DashboardCards today={todayTotal} week={weekTotal} month={monthTotal} />
 
-            <DashboardCharts activities={activities} />
+            {loading ? <LoadingSpinner /> : <DashboardCharts activities={activities} />}
           </Grid>
 
           <Grid item xs={12} md={4}>
