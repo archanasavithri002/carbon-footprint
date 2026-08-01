@@ -9,6 +9,7 @@ import ActivitiesPage from './pages/activities/ActivitiesPage'
 import ChangePasswordPage from './pages/auth/ChangePasswordPage'
 import NotFoundPage from './pages/NotFoundPage'
 import PrivateRoute from './routes/PrivateRoute'
+import ProtectedLayout from './layouts/ProtectedLayout'
 
 export default function App() {
   return (
@@ -19,9 +20,11 @@ export default function App() {
       <Route path="/change-password" element={<ChangePasswordPage />} />
 
       <Route path="/app" element={<PrivateRoute />}>
-        <Route index element={<DashboardPage />} />
-        <Route path="profile" element={<ProfilePage />} />
-        <Route path="activities" element={<ActivitiesPage />} />
+        <Route element={<ProtectedLayout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="activities" element={<ActivitiesPage />} />
+        </Route>
       </Route>
 
       <Route path="/404" element={<NotFoundPage />} />
