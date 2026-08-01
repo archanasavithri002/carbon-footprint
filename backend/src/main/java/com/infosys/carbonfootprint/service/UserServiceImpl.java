@@ -35,4 +35,23 @@ public class UserServiceImpl implements UserService {
         user.setRoles(roles);
         return userRepository.save(user);
     }
+
+    @Override
+    public User getByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    @Override
+    public User updateProfile(String username, User updated) {
+        User existing = getByUsername(username);
+        existing.setFirstName(updated.getFirstName());
+        existing.setLastName(updated.getLastName());
+        existing.setPhone(updated.getPhone());
+        existing.setAddressLine1(updated.getAddressLine1());
+        existing.setCity(updated.getCity());
+        existing.setState(updated.getState());
+        existing.setPostalCode(updated.getPostalCode());
+        existing.setCountry(updated.getCountry());
+        return userRepository.save(existing);
+    }
 }
